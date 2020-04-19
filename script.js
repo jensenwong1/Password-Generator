@@ -4,28 +4,48 @@ function generatePassword() {
     /****
      * WRITE YOUR CODE HERE
      */
-        
-    document.getElementById(".generate").addEventListener("click", function() {
-    document.querySelector(".form-popup").getElementsByClassName.display="flex";
-    })
-    
-    
-     const result = document.getElementById('result');
-    const length = prompt('How many Characters?');
-    const uppercase = prompt('Include uppercase?');
-    const lowercase = prompt('Include lowercase?');
-    const numbers = prompt('Include numbers?');
-    const symbols = prompt('Include symbols?');
-    const generateEl = document.getElementById('generate');
-     
-    const randomFunc = {
-        lower: getRandomLower,
-        upper: getRandomUpper,
-        number: getRandomNumber,
-        symbol: getRandomSymbol
-    }
-    
-    document.createElement('textarea');
+//get modal element
+var modal=document.getElementById('simpleModal');
+//get open modal button
+var modalBtn=document.getElementById('modalBtn');
+//get generate password button
+var generateInner=document.getElementById('generate1');
+
+//listen for click event
+modalBtn.addEventListener('click', openModal);
+
+//function to open modal box
+function openModal() {
+  modal.style.display='block';
+}
+
+//close modal and write to text area
+
+
+generateInner.addEventListener('click', generatedPassword())
+
+//function to run and generate password
+function generatedPassword(){
+
+
+const resultEl = document.getElementById('result');
+const lengthEl = document.getElementById('length');
+const uppercaseEl = document.getElementById('uppercase');
+const lowercaseEl = document.getElementById('lowercase');
+const numbersEl = document.getElementById('numbers');
+const symbolsEl = document.getElementById('symbols');
+const generateEl = document.getElementById('generate1');
+const clipboard = document.getElementById('clipboard');
+
+const randomFunc = {
+	lower: getRandomLower,
+	upper: getRandomUpper,
+	number: getRandomNumber,
+	symbol: getRandomSymbol
+}
+
+clipboard.addEventListener('click', () => {
+	const textarea = document.createElement('textarea');
 	const password = resultEl.innerText;
 	
 	if(!password) { return; }
@@ -36,9 +56,10 @@ function generatePassword() {
 	document.execCommand('copy');
 	textarea.remove();
 	alert('Password copied to clipboard');
-};
+});
 
-generate.addEventListener('click', () => {
+//check to see if the button was checked
+generate1.addEventListener('click', () => {
 	const length = +lengthEl.value;
 	const hasLower = lowercaseEl.checked;
 	const hasUpper = uppercaseEl.checked;
@@ -85,8 +106,13 @@ function getRandomNumber() {
 
 function getRandomSymbol() {
 	const symbols = '!@#$%^&*(){}[]=<>/,.'
-	return symbols[Math.floor(Math.random() * symbols.length)];
+  return symbols[Math.floor(Math.random() * symbols.length)];
+  
+  modal.style.display='none';
+
 }
+}
+
 
   
   //////////////////////////////////////////////////////////////
