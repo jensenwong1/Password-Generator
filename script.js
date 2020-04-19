@@ -4,7 +4,10 @@
     /****
      * WRITE YOUR CODE HERE
      */
+<<<<<<< HEAD
         
+=======
+>>>>>>> ecabaa028ed8b1b60d5dc826bfdd3e7279659215
 //get modal element
 var modal=document.getElementById('simpleModal');
 //get open modal button
@@ -111,8 +114,13 @@ function getRandomSymbol() {
   
   modal.style.display='none';
 
+<<<<<<< HEAD
+=======
+}
+>>>>>>> ecabaa028ed8b1b60d5dc826bfdd3e7279659215
 }
 }
+
 
 
 
