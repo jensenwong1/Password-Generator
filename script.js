@@ -1,44 +1,13 @@
-// Write a function that takes user input and creates a password
-// based on that input and returns it
+var resultEl = document.getElementById('result');
+var lengthEl = document.getElementById('length');
+var uppercaseEl = document.getElementById('uppercase');
+var lowercaseEl = document.getElementById('lowercase');
+var numbersEl = document.getElementById('numbers');
+var symbolsEl = document.getElementById('symbols');
+var generateEl = document.getElementById('generate');
+var clipboard = document.getElementById('clipboard');
 
-    /****
-     * WRITE YOUR CODE HERE
-     */
-        
-//get modal element
-var modal=document.getElementById('simpleModal');
-//get open modal button
-var modalBtn=document.getElementById('modalBtn');
-//get generate password button
-var generateInner=document.getElementById('generate1');
-
-//listen for click event
-modalBtn.addEventListener('click', openModal);
-
-//function to open modal box
-function openModal() {
-  modal.style.display='block';
-}
-
-//close modal and write to text area
-
-
-generateInner.addEventListener('click', generatedPassword())
-
-//function to run and generate password
-function generatedPassword(){
-
-
-const resultEl = document.getElementById('result');
-const lengthEl = document.getElementById('length');
-const uppercaseEl = document.getElementById('uppercase');
-const lowercaseEl = document.getElementById('lowercase');
-const numbersEl = document.getElementById('numbers');
-const symbolsEl = document.getElementById('symbols');
-const generateEl = document.getElementById('generate1');
-const clipboard = document.getElementById('clipboard');
-
-const randomFunc = {
+var randomFunc = {
 	lower: getRandomLower,
 	upper: getRandomUpper,
 	number: getRandomNumber,
@@ -46,8 +15,8 @@ const randomFunc = {
 }
 
 clipboard.addEventListener('click', () => {
-	const textarea = document.createElement('textarea');
-	const password = resultEl.innerText;
+	var textarea = document.createElement('textarea');
+	var password = resultEl.innerText;
 	
 	if(!password) { return; }
 	
@@ -59,21 +28,20 @@ clipboard.addEventListener('click', () => {
 	alert('Password copied to clipboard');
 });
 
-//check to see if the button was checked
-generate1.addEventListener('click', () => {
-	const length = +lengthEl.value;
-	const hasLower = lowercaseEl.checked;
-	const hasUpper = uppercaseEl.checked;
-	const hasNumber = numbersEl.checked;
-	const hasSymbol = symbolsEl.checked;
+generate.addEventListener('click', () => {
+	var length = +lengthEl.value;
+	var hasLower = lowercaseEl.checked;
+	var hasUpper = uppercaseEl.checked;
+	var hasNumber = numbersEl.checked;
+	var hasSymbol = symbolsEl.checked;
 	
 	resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
-	let generatedPassword = '';
-	const typesCount = lower + upper + number + symbol;
-	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
+	var generatedPassword = '';
+	var typesCount = lower + upper + number + symbol;
+	var typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
 	
 	// Doesn't have a selected type
 	if(typesCount === 0) {
@@ -83,16 +51,17 @@ function generatePassword(lower, upper, number, symbol, length) {
 	// create a loop
 	for(let i=0; i<length; i+=typesCount) {
 		typesArr.forEach(type => {
-			const funcName = Object.keys(type)[0];
+			var funcName = Object.keys(type)[0];
 			generatedPassword += randomFunc[funcName]();
 		});
 	}
 	
-	const finalPassword = generatedPassword.slice(0, length);
+	var finalPassword = generatedPassword.slice(0, length);
 	
 	return finalPassword;
 }
 
+//This returns a value from the Unicode character set
 function getRandomLower() {
 	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -106,12 +75,8 @@ function getRandomNumber() {
 }
 
 function getRandomSymbol() {
-	const symbols = '!@#$%^&*(){}[]=<>/,.'
-  return symbols[Math.floor(Math.random() * symbols.length)];
-  
-  modal.style.display='none';
-
-}
+	var symbols = '!@#$%^&*(){}[]=<>/,.'
+	return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
 
