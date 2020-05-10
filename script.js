@@ -14,19 +14,19 @@ var randomFunc = {
 	symbol: getRandomSymbol
 }
 
-clipboard.addEventListener('click', () => {
-	var textarea = document.createElement('textarea');
-	var password = resultEl.innerText;
+// clipboard.addEventListener('click', () => {
+// 	var textarea = document.createElement('textarea');
+// 	var password = resultEl.innerText;
 	
-	if(!password) { return; }
+// 	if(!password) { return; }
 	
-	textarea.value = password;
-	document.body.appendChild(textarea);
-	textarea.select();
-	document.execCommand('copy');
-	textarea.remove();
-	alert('Password copied to clipboard');
-});
+// 	textarea.value = password;
+// 	document.body.appendChild(textarea);
+// 	textarea.select();
+// 	document.execCommand('copy');
+// 	textarea.remove();
+// 	alert('Password copied to clipboard');
+// });
 
 generate.addEventListener('click', () => {
 	var length = +lengthEl.value;
